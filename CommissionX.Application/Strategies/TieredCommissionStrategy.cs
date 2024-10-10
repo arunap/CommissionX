@@ -1,11 +1,11 @@
-using CommissionX.Core.Constants;
 using CommissionX.Core.Entities;
 using CommissionX.Core.Entities.Comissions;
+using CommissionX.Core.Enums;
 using CommissionX.Core.Interfaces;
 
-namespace CommissionX.Core.Strategies
+namespace CommissionX.Application.Strategies
 {
-    public class TieredCommissionStrategy : ICommissionRuleStrategy
+    public class TieredCommissionStrategy : ICommissionRule
     {
         private readonly List<TireCommisionRule> _rules;
         public TieredCommissionStrategy(List<TireCommisionRule> tiers)
@@ -13,7 +13,7 @@ namespace CommissionX.Core.Strategies
             _rules = tiers;
         }
 
-        public decimal CalculateCommission(SalesPerson salesPerson, Invoice invoice)
+        public decimal CalculateCommission(Invoice invoice, SalesPerson salesPerson)
         {
             decimal commission = 0;
             foreach (var rule in _rules)
@@ -27,34 +27,34 @@ namespace CommissionX.Core.Strategies
                     if (tier.IsInRange(commisionProduct.Quantity))
                     {
                         // apply commision based on the total value of the invoice.
-                        if (rule.RuleScope == CommisionRuleScopeTypes.INVOICE)
+                        if (rule.RuleScope == RuleScopeTypes.INVOICE)
                         {
-                            if (tier.RateType == CommisionRateTypes.FLAT_RATE)
+                            if (tier.RateType == RateTypes.FLAT_RATE)
                             {
                                 commission += tier.Value;
                             }
-                            else if (tier.RateType == CommisionRateTypes.PERCENTAGE)
+                            else if (tier.RateType == RateTypes.PERCENTAGE)
                             {
                                 commission += invoice.TotalAmount * tier.Value / 100;
                             }
                         }
                         // check whether the sold quantity is in the range
-                        else if (rule.RuleScope == CommisionRuleScopeTypes.PRODUCT)
+                        else if (rule.RuleScope == RuleScopeTypes.PRODUCT)
                         {
                             foreach (var specificProduct in invoice.InvoiceProducts.Where(x => x.Product.Id == commisionProduct.ProductId))
                             {
-                                if (tier.RateType == CommisionRateTypes.FLAT_RATE) commission += tier.Value;
-                                else if (tier.RateType == CommisionRateTypes.PERCENTAGE) commission += specificProduct.Product.Price * (tier.Value / 100);
+                                if (tier.RateType == RateTypes.FLAT_RATE) commission += tier.Value;
+                                else if (tier.RateType == RateTypes.PERCENTAGE) commission += specificProduct.Product.Price * (tier.Value / 100);
                             }
                         }
-                        else if (rule.RuleScope == CommisionRuleScopeTypes.MULTIPLES_OF_A_PRODUCT)
+                        else if (rule.RuleScope == RuleScopeTypes.MULTIPLES_OF_A_PRODUCT)
                         {
                             // multiples of a Product sold
                             foreach (var specificProduct in invoice.InvoiceProducts.Where(x => x.Product.Id == commisionProduct.ProductId))
                             {
                                 var totalQty = specificProduct.Quantity;
-                                if (tier.RateType == CommisionRateTypes.FLAT_RATE) commission += totalQty * tier.Value;
-                                else if (tier.RateType == CommisionRateTypes.PERCENTAGE) commission += totalQty * specificProduct.Product.Price * (tier.Value / 100);
+                                if (tier.RateType == RateTypes.FLAT_RATE) commission += totalQty * tier.Value;
+                                else if (tier.RateType == RateTypes.PERCENTAGE) commission += totalQty * specificProduct.Product.Price * (tier.Value / 100);
                             }
 
                         }

@@ -1,6 +1,6 @@
 namespace CommissionX.Core.Entities
 {
-    public abstract class BaseEntity
+    public interface IBaseEntity
     {
         public Guid Id { get; set; }
     }

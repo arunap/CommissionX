@@ -1,0 +1,29 @@
+[
+    {
+        "Id": "c1e8c1a7-88b9-46e1-8e90-8f5eb88b652f",
+        "Name": "Product Percentage Rule"
+    },
+    {
+        "Id": "bfed7f9f-03a9-4cb1-ae5e-91b5d5d5f44e",
+        "Name": "Invoice Percentage Rule"
+    },
+    {
+        "id": "d1f7e287-0a8b-4c01-bb32-3e2b4c9a8a5f",
+        "Name": "15% for specific product"
+    },
+    {
+        "Id": "7b7a9c80-5b4d-4185-8d19-1679b334f2a1",
+        "Name": "12.50% for the invoice"
+    },{
+        "Id": "e702a45b-86f5-4f7b-a4c3-fba4f8c52e34",
+        "Name": "10% of multiple sold per product"
+    },
+    {
+        "Id": "e0c8a44e-d8b8-4b3d-a53b-f3c6a1bb4a6d",
+        "Name": "25.75% for specific product"
+    },
+    {
+        "Id": "26b4a4ee-703e-4098-9b8d-0fbd3057497c",
+        "Name": "30% for the invoice"
+    }
+]

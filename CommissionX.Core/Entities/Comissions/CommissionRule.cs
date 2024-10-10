@@ -1,13 +1,14 @@
 namespace CommissionX.Core.Entities.Comissions
 {
-    public sealed class CommissionRule : BaseEntity
+    public class CommissionRule : IBaseEntity
     {
-        public CommissionRule() => this.Id = Guid.NewGuid();
+        public Guid Id { get; set; }
+        public string Name { get; set; }
 
         // navigation properties
-        public ICollection<TireCommisionRule> TireCommisionRules { get; set; }
-        public ICollection<FlatCommisionRule> FlatCommisionRules { get; set; }
-        public ICollection<PercentageCommisionRule> PercentageCommisionRules { get; set; }
-        public ICollection<CapCommisionRule> CapCommisionRules { get; set; }
+        public ICollection<TireCommisionRule> TireCommissionRules { get; set; }
+        public ICollection<FlatCommissionRule> FlatCommissionRules { get; set; }
+        public ICollection<PercentageCommisionRule> PercentageCommissionRules { get; set; }
+        public ICollection<CapCommissionRule> CapCommissionRules { get; set; }
     }
 }

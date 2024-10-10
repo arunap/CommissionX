@@ -1,0 +1,15 @@
+[
+    {
+        "Id": "d2345678-e89b-12d3-a456-426614174003",
+        "RuleScope": "INVOICE",
+        "ProductId": null,
+        "Product": null,
+        "Value": 300.00,
+        "CommissionRuleId": "e6543210-e89b-12d3-a456-426614174004",
+        "CommissionRule": {
+            "CommissionRuleId": "e6543210-e89b-12d3-a456-426614174004",
+            "RuleName": "Cap Rule for Invoice"
+        },
+        "RateType": "PERCENTAGE"
+    }
+]

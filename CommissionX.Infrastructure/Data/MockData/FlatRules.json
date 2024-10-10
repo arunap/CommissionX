@@ -1,0 +1,21 @@
+[
+    {
+        "Id": "a4b639a6-5c5b-4b87-b36b-12f9298d83d1",
+        "RuleScope": "PRODUCT",
+        "ProductId": "38f79a5e-ec1a-4a68-bff7-f4d36b22f121",
+        "Product": {
+            "Id": "38f79a5e-ec1a-4a68-bff7-f4d36b22f121",
+            "Name": "Product A"
+        },
+        "CommissionRuleId": "c1e8c1a7-88b9-46e1-8e90-8f5eb88b652f",
+        "Value": 15.0
+    },
+    {
+        "Id": "d2b33925-7cf0-4d1b-8c91-e60d9ab1a3a3",
+        "RuleScope": "INVOICE",
+        "ProductId": null,
+        "Product": null,
+        "CommissionRuleId": "bfed7f9f-03a9-4cb1-ae5e-91b5d5d5f44e",
+        "Value": 10.0
+    }
+]

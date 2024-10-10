@@ -1,28 +1,28 @@
-using CommissionX.Core.Constants;
 using CommissionX.Core.Entities;
 using CommissionX.Core.Entities.Comissions;
+using CommissionX.Core.Enums;
 using CommissionX.Core.Interfaces;
 
-namespace CommissionX.Core.Strategies
+namespace CommissionX.Application.Strategies
 {
-    public class PercentageCommissionStrategy : ICommissionRuleStrategy
+    public class PercentageCommissionStrategy : ICommissionRule
     {
         private readonly List<PercentageCommisionRule> _commissionRules;
 
         public PercentageCommissionStrategy(List<PercentageCommisionRule> commissionRules) => _commissionRules = commissionRules;
 
-        public decimal CalculateCommission(SalesPerson salesPerson, Invoice invoice)
+        public decimal CalculateCommission(Invoice invoice, SalesPerson salesPerson)
         {
             decimal totalCommission = 0;
 
             foreach (var rule in _commissionRules)
             {
-                if (rule.RuleScope == CommisionRuleScopeTypes.INVOICE)
+                if (rule.RuleScope == RuleScopeTypes.INVOICE)
                 {
                     totalCommission += invoice.TotalAmount * rule.Value / 100;
                 }
                 // Calculate commission for individual Products
-                else if (rule.RuleScope == CommisionRuleScopeTypes.PRODUCT)
+                else if (rule.RuleScope == RuleScopeTypes.PRODUCT)
                 {
                     var product = invoice.InvoiceProducts.FirstOrDefault(p => p.ProductId == rule.ProductId);
                     if (product == null)
