@@ -1,0 +1,35 @@
+# CommissionX.Api
+
+CommissionX.Api is a microservice designed to handle commission calculations using the CQRS (Command Query Responsibility Segregation) pattern. The service supports different commission types such as Flat, Percentage, Tiered, Combination, and Cap. The project is built using .NET Core, Docker, and MySQL for data persistence.
+
+## Project Structure
+
+The solution is divided into multiple projects to support a clean architecture pattern:
+
+1. **CommissionX.Api** - The API layer that handles HTTP requests and orchestrates application services.
+2. **CommissionX.Application** - Contains application logic, CQRS pattern implementations (Commands, Queries, Handlers), and DTOs.
+3. **CommissionX.Core** - Core domain entities such as `Invoice`, `SalesPerson`, `CommissionRule`, etc.
+4. **CommissionX.Infrastructure** - Infrastructure layer for database contexts, and persistence configuration (MySQL).
+
+## Technologies Used
+
+- **.NET Core 6**
+- **CQRS Pattern**
+- **Entity Framework Core 6**
+- **Docker**
+- **MySQL**
+- **Docker Compose**
+
+## Getting Started
+
+### Prerequisites
+
+- Docker and Docker Compose installed on your machine.
+- .NET Core 6 SDK installed.
+
+### Running the Application
+
+```bash
+git clone https://github.com/arunap/CommissionX.git
+cd CommissionX
+docker-compose up --build

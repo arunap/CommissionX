@@ -10,7 +10,20 @@ namespace CommissionX.Infrastructure.Configurations
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<CommissionDataContext>(options => options.UseInMemoryDatabase("CommissionX_DB"));
+            if (configuration.GetValue<bool>("UseInMemoryDatabase"))
+            {
+                services.AddDbContext<CommissionDataContext>(options => options.UseInMemoryDatabase("CommissionX_DB"));
+            }
+            else
+            {
+                var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+                // Configure shared CafeManagementDbContext
+                services.AddDbContext<CommissionDataContext>(
+                    options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString),
+                    builder => builder.MigrationsAssembly(typeof(CommissionDataContext).Assembly.FullName)
+                ));
+            }
 
             services.AddScoped<ICommissionDataContext>(provider => provider.GetRequiredService<CommissionDataContext>());
 

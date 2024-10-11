@@ -1,5 +1,5 @@
 using CommissionX.Core.Entities;
-using CommissionX.Core.Entities.Comissions;
+using CommissionX.Core.Entities.Rules;
 using CommissionX.Core.Enums;
 using CommissionX.Core.Interfaces;
 
@@ -8,9 +8,9 @@ namespace CommissionX.Application.Strategies
     public class FlatCommissionStrategy : ICommissionRule
     {
 
-        private readonly List<FlatCommissionRule> _commissionRules;
+        private readonly List<CommissionRule> _commissionRules;
 
-        public FlatCommissionStrategy(List<FlatCommissionRule> commissionRules) => _commissionRules = commissionRules;
+        public FlatCommissionStrategy(List<CommissionRule> commissionRules) => _commissionRules = commissionRules;
 
         public decimal CalculateCommission(Invoice invoice, SalesPerson salesPerson)
         {
@@ -18,7 +18,7 @@ namespace CommissionX.Application.Strategies
 
             foreach (var rule in _commissionRules)
             {
-                if (rule.RuleScope == RuleScopeTypes.INVOICE)
+                if (rule.RuleContextType == RuleContextType.Invoice)
                 {
                     totalCommission += rule.Value;
                 }
@@ -28,14 +28,13 @@ namespace CommissionX.Application.Strategies
                     if (product == null)
                         continue;
 
-                    if (rule.RuleScope == RuleScopeTypes.PRODUCT)
+                    if (rule.RuleContextType == RuleContextType.Product)
                     {
                         // Calculate commission per Product
                         totalCommission += rule.Value;
                     }
-                    else if (rule.RuleScope == RuleScopeTypes.MULTIPLES_OF_A_PRODUCT)
+                    else if (rule.RuleContextType == RuleContextType.ProductMultiples)
                     {
-
                         totalCommission += rule.Value * product.Quantity;
                     }
                 }

@@ -1,8 +1,7 @@
 using System.Reflection;
 using CommissionX.Core.Entities;
-using CommissionX.Core.Entities.Comissions;
+using CommissionX.Core.Entities.Rules;
 using CommissionX.Core.Interfaces;
-using CommissionX.Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace CommissionX.Infrastructure.Data
@@ -11,11 +10,7 @@ namespace CommissionX.Infrastructure.Data
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<CommissionRule> CommissionRules { get; set; }
-        public DbSet<FlatCommissionRule> FlatCommissionRules { get; set; }
-        public DbSet<TireCommisionRule> TireCommissionRules { get; set; }
-        public DbSet<PercentageCommisionRule> PercentageCommissionRules { get; set; }
-        public DbSet<CapCommissionRule> CapCommissionRules { get; set; }
-
+        public DbSet<TireCommissionRuleItem> TireCommisionRuleItems { get; set; }
 
         public new DbSet<T> Set<T>() where T : class => base.Set<T>();
 

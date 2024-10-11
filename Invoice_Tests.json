@@ -1,0 +1,65 @@
+// To Apply Invoice based Flat and Percentage commisssions
+// Laptop -> 1200, commission -> 100 + (1200 * 5%) + 120 = 100 + 60 + 120 = 280
+{
+    "invoiceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "salesPersonId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "invoiceProducts": [
+        {
+            "productId": "9d2f7910-4c2d-4fa7-b071-89cb5f8e4c85",
+            "quantity": 1
+        }
+    ],
+    "totalAmount": 1200
+}
+// To Apply Percentage for a specific Product + default Cap  (399)
+// Tablet -> 6000, commission -> 100 + (6000 * 5%) +  = 100 + 300 = 400 ==> 399
+{
+    "invoiceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "salesPersonId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "invoiceProducts": [
+        {
+            "productId": "bc8fd9ad-e6f1-46fa-885b-1e5a88c1b9b8",
+            "quantity": 12
+        }
+    ],
+    "totalAmount": 6000
+}
+// To Apply Percentage for a specific Product 
+// smartphone -> 800, commission -> 35 + 40 = 75 + 100 = 175
+{
+    "invoiceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "salesPersonId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "invoiceProducts": [
+        {
+            "productId": "0e9f21c4-daa0-4e6b-9730-c30a646d68e1",
+            "quantity": 1
+        }
+    ],
+    "totalAmount": 800
+}
+// To Apply Flat rate for a multiples of a specific Product
+// smartwatch -> 350, commission -> 23*3  = 69 + (100 + 1050 * 5%) = 69 + 152.50 =221.5
+{
+    "invoiceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "salesPersonId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "invoiceProducts": [
+        {
+            "productId": "03b0e317-8dc4-4f2d-bc3f-8457689659f2",
+            "quantity": 3
+        }
+    ],
+    "totalAmount": 1050
+}
+// To apply Tired values for multiple of a product (Flat + Tired)
+// Headphone 180 -> 100 + (540 * 5%) + 23 * 3 = 100 + 27 + 69 = 196
+{
+    "invoiceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "salesPersonId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "invoiceProducts": [
+        {
+            "productId": "d4c37e8d-8f4f-4d9e-a911-4b10f775c842",
+            "quantity": 3
+        }
+    ],
+    "totalAmount": 540
+}

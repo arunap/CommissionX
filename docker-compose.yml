@@ -1,0 +1,47 @@
+name: commissionx-microservice
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: commissionx-mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: commissionx_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_password
+    ports:
+      - "8300:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - commissionx_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--silent"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+
+  commissionx-api:
+    container_name: commissionx-api
+    build:
+      context: .
+      dockerfile: CommissionX.Api/Dockerfile
+    image: commissionx-api:latest
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "8200:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=commissionx-mysql-db;Database=commissionx_db;User=user;Password=user_password;
+    networks:
+      - commissionx_network
+
+volumes:
+  mysql_data:
+
+networks:
+  commissionx_network:
+    driver: bridge

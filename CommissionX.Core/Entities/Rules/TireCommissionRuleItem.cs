@@ -1,19 +1,15 @@
+using CommissionX.Core.Entities.Common;
 using CommissionX.Core.Enums;
 
-namespace CommissionX.Core.Entities.Comissions
+namespace CommissionX.Core.Entities.Rules
 {
-    public sealed class TireCommisionRule : CommisionBase
+    public class TireCommissionRuleItem : BaseEntity
     {
-        public List<TireCommisionItem> Tires { get; set; }
-    }
-
-    public class TireCommisionItem : IBaseEntity
-    {
-        public Guid Id { get; set; }
         public int? TierStart { get; set; }
         public int? TierEnd { get; set; }
-        public RateTypes RateType { get; set; } = RateTypes.FLAT_RATE;
         public decimal Value { get; set; }
+        public RateCalculationType RateCalculationType { get; set; } = RateCalculationType.None;
+        public RuleContextType RuleContextType { get; set; } = RuleContextType.None;
 
         // navigation property
         public Guid CommissionRuleId { get; set; }

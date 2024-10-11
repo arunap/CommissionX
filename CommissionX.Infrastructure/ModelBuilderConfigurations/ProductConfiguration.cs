@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CommissionX.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CommissionX.Infrastructure.Data.ModelBuilders
+namespace CommissionX.Infrastructure.ModelBuilderConfigurations
 {
     public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
@@ -18,7 +14,7 @@ namespace CommissionX.Infrastructure.Data.ModelBuilders
             builder.HasKey(o => o.Id);
 
             builder.Property(mi => mi.Price)
-             .HasColumnType("decimal(18,2)") // Ensure correct decimal precision
+             .HasColumnType("decimal(18,2)") 
              .IsRequired();
 
             builder.Property(o => o.Name).HasMaxLength(200).IsRequired(false);

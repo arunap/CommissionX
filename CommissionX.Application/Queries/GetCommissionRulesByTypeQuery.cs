@@ -1,4 +1,4 @@
-using CommissionX.Core.Entities.Comissions;
+using CommissionX.Core.Entities.Rules;
 using CommissionX.Core.Enums;
 using CommissionX.Core.Interfaces;
 using MediatR;
@@ -6,12 +6,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CommissionX.Application.Queries
 {
-    public class GetCommissionRulesByTypeQuery<TRule> : IRequest<List<TRule>> where TRule : class
+    public class GetCommissionRulesByTypeQuery : IRequest<List<CommissionRule>>
     {
-        public CommissionRuleTypes CommissionRuleType { get; set; }
+        public CommissionRuleType CommissionRuleType;
+
+        public GetCommissionRulesByTypeQuery(CommissionRuleType commissionRuleType)
+        {
+            CommissionRuleType = commissionRuleType;
+        }
+
     }
 
-    public class GetCommissionRulesByTypeQueryHandler<TRule> : IRequestHandler<GetCommissionRulesByTypeQuery<TRule>, List<TRule>> where TRule : class
+    public class GetCommissionRulesByTypeQueryHandler : IRequestHandler<GetCommissionRulesByTypeQuery, List<CommissionRule>>
     {
         private readonly ICommissionDataContext _commissionDataContext;
 
@@ -20,9 +26,13 @@ namespace CommissionX.Application.Queries
             _commissionDataContext = commissionDataContext;
         }
 
-        public async Task<List<TRule>> Handle(GetCommissionRulesByTypeQuery<TRule> request, CancellationToken cancellationToken)
+        public async Task<List<CommissionRule>> Handle(GetCommissionRulesByTypeQuery request, CancellationToken cancellationToken)
         {
-            var rules = await _commissionDataContext.Set<TRule>().ToListAsync();
+            var rules = await _commissionDataContext
+                .CommissionRules
+                .Where(x => request.CommissionRuleType == CommissionRuleType.None || x.CommissionRuleType == request.CommissionRuleType)
+                .ToListAsync();
+
             return rules;
         }
     }

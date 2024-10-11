@@ -1,4 +1,4 @@
-using CommissionX.Core.Entities.Comissions;
+using CommissionX.Core.Entities.Rules;
 
 namespace CommissionX.Core.Entities
 {

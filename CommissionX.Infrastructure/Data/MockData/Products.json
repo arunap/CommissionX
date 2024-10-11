@@ -2,26 +2,26 @@
     {
         "Id": "9d2f7910-4c2d-4fa7-b071-89cb5f8e4c85",
         "Name": "Laptop",
-        "Price": 1200.50
+        "Price": 1200.00
     },
     {
         "Id": "0e9f21c4-daa0-4e6b-9730-c30a646d68e1",
         "Name": "Smartphone",
-        "Price": 799.99
+        "Price": 800.00
     },
     {
         "Id": "d4c37e8d-8f4f-4d9e-a911-4b10f775c842",
         "Name": "Headphones",
-        "Price": 199.99
+        "Price": 180
     },
     {
         "Id": "03b0e317-8dc4-4f2d-bc3f-8457689659f2",
         "Name": "Smartwatch",
-        "Price": 349.99
+        "Price": 350.00
     },
     {
         "Id": "bc8fd9ad-e6f1-46fa-885b-1e5a88c1b9b8",
         "Name": "Tablet",
-        "Price": 499.99
+        "Price": 500.00
     }
 ]

@@ -1,11 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using CommissionX.Core.Entities;
-using CommissionX.Core.Entities.Comissions;
+using CommissionX.Core.Entities.Rules;
 using CommissionX.Core.Interfaces;
-using CommissionX.Infrastructure.Configurations;
+using Microsoft.EntityFrameworkCore;
 
 namespace CommissionX.Infrastructure.Data
 {
@@ -20,22 +19,38 @@ namespace CommissionX.Infrastructure.Data
 
         public async Task InitializeAsync()
         {
-            var products = "Data/MockData/Products.json".SeedFromJson<Product>();
-            var commisions = "Data/MockData/CommissionRules.json".SeedFromJson<CommissionRule>();
-            var flats = "Data/MockData/FlatRules.json".SeedFromJson<FlatCommissionRule>();
+            if (!await _context.Products.AnyAsync())
+            {
+                var products = SeedFromJson<Product>("Data/MockData/Products.json");
+                _context.Products.AddRange(products);
+                await _context.SaveChangesAsync();
+            }
 
-            // var tired = "Data/MockData/TiredRules.json".SeedFromJson<TireCommisionRule>();
-            //   var percents = "Data/MockData/PercentageRules.json".SeedFromJson<PercentageCommisionRule>();
-            //  var caps = "Data/MockData/CapRules.json".SeedFromJson<CapCommissionRule>();
+            if (!await _context.CommissionRules.AnyAsync())
+            {
+                var commisions = SeedFromJson<CommissionRule>("Data/MockData/CommissionRules.json");
+                _context.CommissionRules.AddRange(commisions);
+                await _context.SaveChangesAsync();
+            }
 
-            _context.Products.AddRange(products);
-            _context.CommissionRules.AddRange(commisions);
-            _context.FlatCommissionRules.AddRange(flats);
-            //  _context.TireCommissionRules.AddRange(tired);
-            //   _context.PercentageCommissionRules.AddRange(percents);
-            //   _context.CapCommissionRules.AddRange(caps);
+            if (!await _context.TireCommisionRuleItems.AnyAsync())
+            {
+                var commisions = SeedFromJson<TireCommissionRule>("Data/MockData/TireCommissionRules.json");
+                _context.CommissionRules.AddRange(commisions);
+                await _context.SaveChangesAsync();
+            }
+        }
 
-            await _context.SaveChangesAsync();
+        public static List<T> SeedFromJson<T>(string jsonFilePath) where T : class
+        {
+            var entryPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            var path = Path.Combine(entryPath, jsonFilePath);
+            var jsonData = File.ReadAllText(path);
+
+            var options = new JsonSerializerOptions { Converters = { new JsonStringEnumConverter() }, };
+            var entities = JsonSerializer.Deserialize<List<T>>(jsonData, options);
+
+            return entities;
         }
     }
 }

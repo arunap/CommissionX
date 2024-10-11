@@ -1,0 +1,3 @@
+== generate ef migrations ==
+    -   dotnet ef migrations add AddInititalTables --project ..\CommissionX.Infrastructure\ --startup-project .
+    -   dotnet ef database update

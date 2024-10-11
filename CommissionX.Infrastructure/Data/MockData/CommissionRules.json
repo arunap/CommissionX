@@ -1,29 +1,65 @@
 [
     {
-        "Id": "c1e8c1a7-88b9-46e1-8e90-8f5eb88b652f",
-        "Name": "Product Percentage Rule"
+        "Id": "c5f5e42b-9d33-4d7e-a25a-1f6f4a32b9b8",
+        "Name": "Flat Commission for Invoice",
+        "Value": 100.0,
+        "RuleContextType": "Invoice",
+        "RateCalculationType": "Fixed",
+        "CommissionRuleType": "Flat",
+        "ProductId": null
     },
     {
-        "Id": "bfed7f9f-03a9-4cb1-ae5e-91b5d5d5f44e",
-        "Name": "Invoice Percentage Rule"
+        "Id": "be645b2c-1a6a-4a5f-9645-d64df2b25dd7",
+        "Name": "Percentage Commission for Invoice",
+        "Value": 5.0,
+        "RuleContextType": "Invoice",
+        "RateCalculationType": "Percentage",
+        "CommissionRuleType": "Percentage",
+        "ProductId": null
     },
     {
-        "id": "d1f7e287-0a8b-4c01-bb32-3e2b4c9a8a5f",
-        "Name": "15% for specific product"
+        "Id": "af4a4aeb-bb11-4e4a-9a47-86f75dce2933",
+        "Name": "Percentage Commission for Product",
+        "Value": 10.0,
+        "RuleContextType": "Product",
+        "RateCalculationType": "Percentage",
+        "CommissionRuleType": "Percentage",
+        "ProductId": "9d2f7910-4c2d-4fa7-b071-89cb5f8e4c85"
     },
     {
-        "Id": "7b7a9c80-5b4d-4185-8d19-1679b334f2a1",
-        "Name": "12.50% for the invoice"
-    },{
-        "Id": "e702a45b-86f5-4f7b-a4c3-fba4f8c52e34",
-        "Name": "10% of multiple sold per product"
+        "Id": "bf4a4aeb-bb11-4e4a-9a47-86f75dce2933",
+        "Name": "Flat Commission for Product",
+        "Value": 35.0,
+        "RuleContextType": "Product",
+        "RateCalculationType": "Fixed",
+        "CommissionRuleType": "Flat",
+        "ProductId": "0e9f21c4-daa0-4e6b-9730-c30a646d68e1"
     },
     {
-        "Id": "e0c8a44e-d8b8-4b3d-a53b-f3c6a1bb4a6d",
-        "Name": "25.75% for specific product"
+        "Id": "4e23291d-073e-4264-bfc5-2a2ccdd68b28",
+        "Name": "Flat Commission for Multiple Products",
+        "Value": 23.0,
+        "RuleContextType": "ProductMultiples",
+        "RateCalculationType": "Fixed",
+        "CommissionRuleType": "Flat",
+        "ProductId": "d4c37e8d-8f4f-4d9e-a911-4b10f775c842"
     },
     {
-        "Id": "26b4a4ee-703e-4098-9b8d-0fbd3057497c",
-        "Name": "30% for the invoice"
+        "Id": "2cb1dbf4-e6c7-4147-9fb1-3de5af6f68b9",
+        "Name": "Tiered Commission for Product Multiples",
+        "Value": 0.0,
+        "RuleContextType": "ProductMultiples",
+        "RateCalculationType": "Fixed",
+        "CommissionRuleType": "Tier",
+        "ProductId": "d4c37e8d-8f4f-4d9e-a911-4b10f775c842"
+    },
+    {
+        "Id": "29fe421b-0211-4454-a5ff-c8d77b9bc254",
+        "Name": "Capped Commission for Product",
+        "Value": 399.0,
+        "RuleContextType": "Product",
+        "RateCalculationType": "Fixed",
+        "CommissionRuleType": "Cap",
+        "ProductId": null
     }
 ]

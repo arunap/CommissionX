@@ -1,0 +1,20 @@
+[
+    {
+        "Id": "f1c2d96e-7a4d-4a9c-a63c-303d9c2ee0f2",
+        "TierStart": 1,
+        "TierEnd": 10,
+        "Value": 10.00,
+        "RateCalculationType": "Fixed",
+        "RuleContextType": "Product",
+        "CommissionRuleId": "2cb1dbf4-e6c7-4147-9fb1-3de5af6f68b9"
+    },
+    {
+        "Id": "a2c3d8e4-8b3e-4732-bbbb-eeb548cc1c76",
+        "TierStart": 11,
+        "TierEnd": 20,
+        "Value": 15.00,
+        "RateCalculationType": "Fixed",
+        "RuleContextType": "Product",
+        "CommissionRuleId": "2cb1dbf4-e6c7-4147-9fb1-3de5af6f68b9"
+    }
+]
