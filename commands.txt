@@ -1,3 +1,6 @@
 == generate ef migrations ==
     -   dotnet ef migrations add AddInititalTables --project ..\CommissionX.Infrastructure\ --startup-project .
     -   dotnet ef database update
+
+== docker compose ==
+    - docker compose -f "docker-compose.yml" up -d --build 
