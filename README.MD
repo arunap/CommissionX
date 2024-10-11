@@ -9,7 +9,7 @@ The solution is divided into multiple projects to support a clean architecture p
 1. **CommissionX.Api** - The API layer that handles HTTP requests and orchestrates application services.
 2. **CommissionX.Application** - Contains application logic, CQRS pattern implementations (Commands, Queries, Handlers), and DTOs.
 3. **CommissionX.Core** - Core domain entities such as `Invoice`, `SalesPerson`, `CommissionRule`, etc.
-4. **CommissionX.Infrastructure** - Infrastructure layer for database contexts, and persistence configuration (MySQL).
+4. **CommissionX.Infrastructure** - Infrastructure layer for database contexts and persistence configuration (MySQL).
 
 ## Technologies Used
 
@@ -29,7 +29,32 @@ The solution is divided into multiple projects to support a clean architecture p
 
 ### Running the Application
 
-```bash
-git clone https://github.com/arunap/CommissionX.git
-cd CommissionX
-docker-compose up --build
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/arunap/CommissionX.git
+    cd CommissionX
+    ```
+
+### Build and Run
+
+1. Open a terminal and navigate to the root directory of the project.
+
+2. Run the following command to build and start the containers:
+
+    ```bash
+    docker-compose up --build
+    ```
+
+    This command will build the images and start the containers defined in `docker-compose.yml`.
+
+3. To stop the running containers, use:
+
+    ```bash
+    docker-compose down
+    ```
+
+### Access the Application
+
+- **Backend (API)**: The API will be available at `http://localhost:8200/swagger`.
+- **MySQL Database**: Will be available at port `8300` server `127.0.0.1`.
