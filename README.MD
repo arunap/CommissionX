@@ -37,7 +37,7 @@ The solution is divided into multiple projects to support a clean architecture p
    cd CommissionX
    ```
 
-### Build and Run
+### Build and Run (Option 1 - Docker, MySql)
 
 1. Open a terminal and navigate to the root directory of the project.
 
@@ -63,3 +63,15 @@ The solution is divided into multiple projects to support a clean architecture p
 - **MySQL Database**: Will be available at port `8300` server `127.0.0.1`.
 
 ![Alt text](./assets/swagger_api_docs.jpg)
+
+### Build and Run (Option 2 - In-Memory Database)
+
+1. Navigate to the `CommissionX.Api` directory of the project.
+
+2. Open `appsettings.json` file and set `UseInMemoryDatabase=true`
+
+3. Run the following command on the terminal in `CommissionX.Api`
+
+   ```bash
+   dotnet run
+   ```

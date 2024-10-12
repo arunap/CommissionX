@@ -1,5 +1,4 @@
 using CommissionX.Core.Entities.Common;
-using CommissionX.Core.Entities.Rules;
 
 namespace CommissionX.Core.Entities
 {
