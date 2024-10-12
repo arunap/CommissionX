@@ -1,6 +1,7 @@
 # CommissionX.Api
 
-CommissionX.Api is a microservice designed to handle commission calculations using the CQRS (Command Query Responsibility Segregation) pattern. The service supports different commission types such as Flat, Percentage, Tiered, Combination, and Cap. The project is built using .NET Core, Docker, and MySQL for data persistence.
+CommissionX.Api is a microservice designed to handle commission calculations using the CQRS (Command Query Responsibility Segregation) pattern. The service supports different
+commission types such as Flat, Percentage, Tiered, Combination, and Cap. The project is built using .NET Core, Docker, and MySQL for data persistence.
 
 ## Project Structure
 
@@ -31,10 +32,10 @@ The solution is divided into multiple projects to support a clean architecture p
 
 1. Clone the repository:
 
-    ```bash
-    git clone https://github.com/arunap/CommissionX.git
-    cd CommissionX
-    ```
+   ```bash
+   git clone https://github.com/arunap/CommissionX.git
+   cd CommissionX
+   ```
 
 ### Build and Run
 
@@ -42,19 +43,23 @@ The solution is divided into multiple projects to support a clean architecture p
 
 2. Run the following command to build and start the containers:
 
-    ```bash
-    docker-compose up --build
-    ```
+   ```bash
+   docker-compose up --build
+   ```
 
-    This command will build the images and start the containers defined in `docker-compose.yml`.
+   This command will build the images and start the containers defined in `docker-compose.yml`.
+
+![Alt text](./assets/docker_image.jpg)
 
 3. To stop the running containers, use:
 
-    ```bash
-    docker-compose down
-    ```
+   ```bash
+   docker-compose down
+   ```
 
 ### Access the Application
 
 - **Backend (API)**: The API will be available at `http://localhost:8200/swagger`.
 - **MySQL Database**: Will be available at port `8300` server `127.0.0.1`.
+
+![Alt text](./assets/swagger_api_docs.jpg)
