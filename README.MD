@@ -49,7 +49,7 @@ The solution is divided into multiple projects to support a clean architecture p
 
    This command will build the images and start the containers defined in `docker-compose.yml`.
 
-![Alt text](./assets/docker_image.jpg)
+![Docker Image](./assets/docker_image.jpg)
 
 3. To stop the running containers, use:
 
@@ -62,7 +62,7 @@ The solution is divided into multiple projects to support a clean architecture p
 - **Backend (API)**: The API will be available at `http://localhost:8200/swagger`.
 - **MySQL Database**: Will be available at port `8300` server `127.0.0.1`.
 
-![Alt text](./assets/swagger_api_docs.jpg)
+![Swagger Api Document](./assets/swagger_api_docs.jpg)
 
 ### Build and Run (Option 2 - In-Memory Database)
 
@@ -75,3 +75,5 @@ The solution is divided into multiple projects to support a clean architecture p
    ```bash
    dotnet run
    ```
+
+   ![dotnet command](./assets/dotnet_run_for_in_memory.jpg)
