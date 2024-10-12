@@ -10,7 +10,7 @@ namespace CommissionX.Tests.Application.Strategies
         [Fact]
         public void CalculateCommission_Should_Return_Zero_When_NoMatching_Product_In_Invoice()
         {
-            // Arrange
+
             var tieredRules = new List<TireCommissionRule>
             {
                 new TireCommissionRule
@@ -46,17 +46,15 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new TieredCommissionStrategy(tieredRules);
             var salesPerson = new SalesPerson();
 
-            // Act
             var result = strategy.CalculateCommission(invoice, salesPerson);
 
-            // Assert
             Assert.Equal(0m, result); // No matching product, so commission should be 0
         }
 
         [Fact]
         public void CalculateCommission_Should_Return_Fixed_Commission_When_InRange_For_RuleContextType_Is_Invoice()
         {
-            // Arrange
+
             var productId = Guid.NewGuid();
             var tieredRules = new List<TireCommissionRule>
             {
@@ -95,17 +93,15 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new TieredCommissionStrategy(tieredRules);
             var salesPerson = new SalesPerson();
 
-            // Act
             var result = strategy.CalculateCommission(invoice, salesPerson);
 
-            // Assert
             Assert.Equal(100m, result); // Fixed commission of 100
         }
 
         [Fact]
         public void CalculateCommission_Should_Return_PercentageCommission_When_InRange_For_RuleContextType_Is_Invoice()
         {
-            // Arrange
+
             var productId = Guid.NewGuid();
             var tieredRules = new List<TireCommissionRule>
             {
@@ -144,17 +140,15 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new TieredCommissionStrategy(tieredRules);
             var salesPerson = new SalesPerson();
 
-            // Act
             var result = strategy.CalculateCommission(invoice, salesPerson);
 
-            // Assert
             Assert.Equal(100m, result); // 10% of 1000
         }
 
         [Fact]
         public void CalculateCommission_Should_CalculateCommission_For_Products_When_InRange()
         {
-            // Arrange
+
             var productId = Guid.NewGuid();
             var tieredRules = new List<TireCommissionRule>
             {
@@ -191,17 +185,15 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new TieredCommissionStrategy(tieredRules);
             var salesPerson = new SalesPerson();
 
-            // Act
             var result = strategy.CalculateCommission(invoice, salesPerson);
 
-            // Assert
             Assert.Equal(20m, result); // Fixed commission of 20
         }
 
         [Fact]
         public void CalculateCommission_Should_Calculate_MultipleProduct_Commissions_When_InRange()
         {
-            // Arrange
+
             var productId = Guid.NewGuid();
             var tieredRules = new List<TireCommissionRule>
             {
@@ -238,17 +230,15 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new TieredCommissionStrategy(tieredRules);
             var salesPerson = new SalesPerson();
 
-            // Act
             var result = strategy.CalculateCommission(invoice, salesPerson);
 
-            // Assert
             Assert.Equal(30m, result); // 3 products x 10 = 30
         }
 
         [Fact]
         public void CalculateCommission_Should_Calculate_PercentageCommission_For_ProductMultiples_When_InRange()
         {
-            // Arrange
+
             var productId = Guid.NewGuid();
             var tieredRules = new List<TireCommissionRule>
             {
@@ -285,10 +275,8 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new TieredCommissionStrategy(tieredRules);
             var salesPerson = new SalesPerson();
 
-            // Act
             var result = strategy.CalculateCommission(invoice, salesPerson);
 
-            // Assert
             Assert.Equal(60m, result); // 3 products x 100 (price) x 20% = 60
         }
     }

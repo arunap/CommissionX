@@ -14,7 +14,7 @@ namespace CommissionX.Core.Entities.Rules
         // navigation prop
         public Guid? ProductId { get; set; }
         public Product Product { get; set; }
-        public ICollection<TireCommissionRuleItem> TireCommissionRuleItems { get; set; }
-        public ICollection<SalesPersonCommissionRule> SalesPersonCommissionRules { get; set; }
+        public ICollection<TireCommissionRuleItem> TireCommissionRuleItems { get; set; } = new List<TireCommissionRuleItem>();
+        public ICollection<SalesPersonCommissionRule> SalesPersonCommissionRules { get; set; } = new List<SalesPersonCommissionRule>();
     }
 }

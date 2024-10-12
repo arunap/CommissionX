@@ -24,7 +24,7 @@ namespace CommissionX.Application.Configurations
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             // register mediator dependency
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetCommisionByInvoiceQuery).Assembly));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CreateCommissionRuleCommand).Assembly));
 
             services.AddScoped<ICommissionAggregator, CommissionAggregator>();
 

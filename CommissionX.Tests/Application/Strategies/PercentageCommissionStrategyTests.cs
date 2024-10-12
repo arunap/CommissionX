@@ -10,7 +10,7 @@ namespace CommissionX.Tests.Application.Strategies
         [Fact]
         public void CalculateCommission_Should_Return_Commission_BasedOn_InvoiceTotal_When_RuleContext_Is_Invoice()
         {
-            // Arrange
+
             var commissionRules = new List<CommissionRule>
             {
                 new CommissionRule
@@ -28,17 +28,15 @@ namespace CommissionX.Tests.Application.Strategies
             var invoice = new Invoice { TotalAmount = 100m };
             var salesPerson = new SalesPerson();
 
-            // Act
             var result = strategy.CalculateCommission(invoice, salesPerson);
 
-            // Assert
             Assert.Equal(10m, result); // 10% of 100 should be 10
         }
 
         [Fact]
         public void CalculateCommission_Should_Return_CommissionFor_Products_When_RuleContext_Is_Product()
         {
-            // Arrange
+
             var commissionRules = new List<CommissionRule>
             {
                 new CommissionRule
@@ -64,17 +62,15 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new PercentageCommissionStrategy(commissionRules);
             var salesPerson = new SalesPerson();
 
-            // Act
             var result = strategy.CalculateCommission(invoice, salesPerson);
 
-            // Assert
             Assert.Equal(25m, result); // 5% of 500 should be 25
         }
 
         [Fact]
         public void CalculateCommission_Should_Return_Zero_When_NoMatching_Product_In_Invoice()
         {
-            // Arrange
+
             var commissionRules = new List<CommissionRule>
             {
                 new CommissionRule
@@ -101,17 +97,15 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new PercentageCommissionStrategy(commissionRules);
             var salesPerson = new SalesPerson();
 
-            // Act
             var result = strategy.CalculateCommission(invoice, salesPerson);
 
-            // Assert
             Assert.Equal(0m, result); // No matching product, so commission should be 0
         }
 
         [Fact]
         public void CalculateCommission_Should_CalculateCommission_For_Both_Invoice_And_Products()
         {
-            // Arrange
+
             var invoiceCommissionRule = new CommissionRule
             {
                 RuleContextType = RuleContextType.Invoice,
@@ -144,10 +138,8 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new PercentageCommissionStrategy(new List<CommissionRule> { invoiceCommissionRule, productCommissionRule });
             var salesPerson = new SalesPerson();
 
-            // Act
             var result = strategy.CalculateCommission(invoice, salesPerson);
 
-            // Assert
             var expectedCommission = (1000m * 10m / 100) + (500m * 5m / 100);
 
             // Should calculate commission for both invoice and product

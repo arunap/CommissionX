@@ -65,7 +65,7 @@ namespace CommissionX.Application.Commands
             _commissionAggregator.AddStrategry(tierdCommission);
 
             // cap commision rule for total commission
-            var capRule = commissionRules.Where(c => c.CommissionRuleType == CommissionRuleType.Cap).FirstOrDefault() ?? new CommissionRule { };
+            var capRule = commissionRules.Where(c => c.CommissionRuleType == CommissionRuleType.Cap).ToList();
             ICommissionRule capCommission = new CapCommissionStrategy(_commissionAggregator, capRule);
 
             var products = _dataContext.Products.Where(p => request.InvoiceProducts.Select(c => c.ProductId).Contains(p.Id)).ToList();

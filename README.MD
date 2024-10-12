@@ -1,7 +1,6 @@
 # CommissionX.Api
 
-CommissionX.Api is a microservice designed to handle commission calculations using the CQRS (Command Query Responsibility Segregation) pattern. The service supports different
-commission types such as Flat, Percentage, Tiered, Combination, and Cap. The project is built using .NET Core, Docker, and MySQL for data persistence.
+CommissionX.Api is a microservice designed to handle commission calculations. The service supports different commission types such as Flat, Percentage, Tiered, Combination, and Cap. The project is built using .NET Core, Docker, and MySQL for data persistence.
 
 ## Project Structure
 
@@ -15,11 +14,15 @@ The solution is divided into multiple projects to support a clean architecture p
 ## Technologies Used
 
 - **.NET Core 6**
-- **CQRS Pattern**
 - **Entity Framework Core 6**
 - **Docker**
 - **MySQL**
 - **Docker Compose**
+
+## Assumptions
+- In a case where a default cap rule exists and an individual cap rule(s) exists for a given sales person, priority will be given to the Sales Person's the minimum cap.
+- When creating a Commission Rule, the system allows assigning a single Product to the commission rule.
+- No priority/consideration were given when applying defaults,Flat, Percentage, Tire  
 
 ## Getting Started
 
@@ -71,7 +74,7 @@ The solution is divided into multiple projects to support a clean architecture p
 
    ![dotnet command](./assets/dotnet_run_for_in_memory.jpg)
 
-### Access the Application
+### Accessing the Application
 
 - **Backend (API)**: The API will be available at `http://localhost:8200/swagger`.
 - **MySQL Database**: Will be available at port `8300` server `127.0.0.1`.
