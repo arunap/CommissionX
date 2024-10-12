@@ -13,25 +13,6 @@ namespace CommissionX.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "CommissionRules",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Value = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    RuleContextType = table.Column<int>(type: "int", nullable: false),
-                    RateCalculationType = table.Column<int>(type: "int", nullable: false),
-                    CommissionRuleType = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CommissionRules", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -61,25 +42,25 @@ namespace CommissionX.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "TireCommissionRuleItems",
+                name: "CommissionRules",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    TierStart = table.Column<int>(type: "int", nullable: true),
-                    TierEnd = table.Column<int>(type: "int", nullable: true),
-                    Value = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    RateCalculationType = table.Column<int>(type: "int", nullable: false),
-                    RuleContextType = table.Column<string>(type: "longtext", nullable: false)
+                    Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CommissionRuleId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                    Value = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RuleContextType = table.Column<int>(type: "int", nullable: false),
+                    RateCalculationType = table.Column<int>(type: "int", nullable: false),
+                    CommissionRuleType = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TireCommissionRuleItems", x => x.Id);
+                    table.PrimaryKey("PK_CommissionRules", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TireCommissionRuleItems_CommissionRules_CommissionRuleId",
-                        column: x => x.CommissionRuleId,
-                        principalTable: "CommissionRules",
+                        name: "FK_CommissionRules_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
                         principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -105,6 +86,32 @@ namespace CommissionX.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "ProductCommissionRules",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    CommissionRuleId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    ProductId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductCommissionRules", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductCommissionRules_CommissionRules_CommissionRuleId",
+                        column: x => x.CommissionRuleId,
+                        principalTable: "CommissionRules",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductCommissionRules_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "SalesPersonCommissionRules",
                 columns: table => new
                 {
@@ -124,6 +131,30 @@ namespace CommissionX.Infrastructure.Migrations
                         name: "FK_SalesPersonCommissionRules_SalesPersons_SalesPersonId",
                         column: x => x.SalesPersonId,
                         principalTable: "SalesPersons",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "TireCommissionRuleItems",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    TierStart = table.Column<int>(type: "int", nullable: true),
+                    TierEnd = table.Column<int>(type: "int", nullable: true),
+                    Value = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RateCalculationType = table.Column<int>(type: "int", nullable: false),
+                    RuleContextType = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CommissionRuleId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TireCommissionRuleItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TireCommissionRuleItems_CommissionRules_CommissionRuleId",
+                        column: x => x.CommissionRuleId,
+                        principalTable: "CommissionRules",
                         principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -154,6 +185,11 @@ namespace CommissionX.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CommissionRules_ProductId",
+                table: "CommissionRules",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_InvoiceProducts_InvoiceId",
                 table: "InvoiceProducts",
                 column: "InvoiceId");
@@ -162,6 +198,16 @@ namespace CommissionX.Infrastructure.Migrations
                 name: "IX_Invoices_SalesPersonId",
                 table: "Invoices",
                 column: "SalesPersonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCommissionRules_CommissionRuleId",
+                table: "ProductCommissionRules",
+                column: "CommissionRuleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductCommissionRules_ProductId",
+                table: "ProductCommissionRules",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SalesPersonCommissionRules_CommissionRuleId",
@@ -180,6 +226,9 @@ namespace CommissionX.Infrastructure.Migrations
                 name: "InvoiceProducts");
 
             migrationBuilder.DropTable(
+                name: "ProductCommissionRules");
+
+            migrationBuilder.DropTable(
                 name: "SalesPersonCommissionRules");
 
             migrationBuilder.DropTable(
@@ -189,13 +238,13 @@ namespace CommissionX.Infrastructure.Migrations
                 name: "Invoices");
 
             migrationBuilder.DropTable(
-                name: "Products");
-
-            migrationBuilder.DropTable(
                 name: "CommissionRules");
 
             migrationBuilder.DropTable(
                 name: "SalesPersons");
+
+            migrationBuilder.DropTable(
+                name: "Products");
         }
     }
 }

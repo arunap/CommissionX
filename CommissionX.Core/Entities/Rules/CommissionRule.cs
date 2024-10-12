@@ -12,7 +12,8 @@ namespace CommissionX.Core.Entities.Rules
         public CommissionRuleType CommissionRuleType { get; set; } = CommissionRuleType.None; // Flat, Percentage, Tier, Cap
 
         // navigation prop
-        public ICollection<ProductCommissionRule> ProductCommissionRules { get; set; }
+        public Guid? ProductId { get; set; }
+        public Product Product { get; set; }
         public ICollection<TireCommissionRuleItem> TireCommissionRuleItems { get; set; }
         public ICollection<SalesPersonCommissionRule> SalesPersonCommissionRules { get; set; }
     }

@@ -39,6 +39,12 @@ namespace CommissionX.Infrastructure.Data
                 _context.TireCommissionRuleItems.AddRange(commisions);
                 await _context.SaveChangesAsync();
             }
+
+            if (!await _context.SalesPersons.AnyAsync())
+            {
+                _context.SalesPersons.Add(new SalesPerson { Id = Guid.Parse("3fa85f64-5717-4562-b3fc-2c963f66afa6"), Name = "John Doe" });
+                await _context.SaveChangesAsync();
+            }
         }
 
         public static List<T> SeedFromJson<T>(string jsonFilePath) where T : class

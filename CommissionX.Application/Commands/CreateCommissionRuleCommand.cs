@@ -13,8 +13,8 @@ namespace CommissionX.Application.Commands
         public RuleContextType RuleContextType { get; set; }
         public RateCalculationType RateCalculationType { get; set; }
         public CommissionRuleType CommissionRuleType { get; set; }
-        public List<Guid?> ProductIds { get; set; }
-        public List<Guid?> PersonIds { get; set; }
+        public Guid? ProductId { get; set; }
+        public List<Guid?> SalesPersonIds { get; set; }
     }
 
     public class CreateCommissionRuleCommandHandler : IRequestHandler<CreateCommissionRuleCommand, Guid>
@@ -37,12 +37,8 @@ namespace CommissionX.Application.Commands
                 RuleContextType = request.RuleContextType,
                 RateCalculationType = request.RateCalculationType,
                 CommissionRuleType = request.CommissionRuleType,
-                ProductCommissionRules = request.ProductIds.Select(x => new ProductCommissionRule
-                {
-                    ProductId = x.Value,
-                    CommissionRuleId = commisionRuleId
-                }).ToList(),
-                SalesPersonCommissionRules = request.ProductIds.Select(x => new SalesPersonCommissionRule
+                ProductId = request.ProductId,
+                SalesPersonCommissionRules = request.SalesPersonIds.Select(x => new SalesPersonCommissionRule
                 {
                     SalesPersonId = x.Value,
                     CommissionRuleId = commisionRuleId

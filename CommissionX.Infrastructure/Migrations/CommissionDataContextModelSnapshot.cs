@@ -80,6 +80,27 @@ namespace CommissionX.Infrastructure.Migrations
                     b.ToTable("Products", (string)null);
                 });
 
+            modelBuilder.Entity("CommissionX.Core.Entities.ProductCommissionRule", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("CommissionRuleId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommissionRuleId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductCommissionRules");
+                });
+
             modelBuilder.Entity("CommissionX.Core.Entities.Rules.CommissionRule", b =>
                 {
                     b.Property<Guid>("Id")
@@ -107,6 +128,8 @@ namespace CommissionX.Infrastructure.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("CommissionRules", (string)null);
                 });
@@ -204,6 +227,34 @@ namespace CommissionX.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Invoice");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("CommissionX.Core.Entities.ProductCommissionRule", b =>
+                {
+                    b.HasOne("CommissionX.Core.Entities.Rules.CommissionRule", "CommissionRule")
+                        .WithMany()
+                        .HasForeignKey("CommissionRuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CommissionX.Core.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CommissionRule");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("CommissionX.Core.Entities.Rules.CommissionRule", b =>
+                {
+                    b.HasOne("CommissionX.Core.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
 
                     b.Navigation("Product");
                 });

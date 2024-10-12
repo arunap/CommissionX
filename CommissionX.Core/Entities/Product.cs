@@ -9,6 +9,6 @@ namespace CommissionX.Core.Entities
 
         // navigation prop
         public ICollection<InvoiceProduct> InvoiceProducts { get; set; }
-        public ICollection<ProductCommissionRule> ProductCommissionRules { get; set; }
+        // public ICollection<ProductCommissionRule> ProductCommissionRules { get; set; }
     }
 }

@@ -1,5 +1,0 @@
-namespace CommissionX.Application.Commands
-{
-
-
-}

@@ -29,30 +29,30 @@ namespace CommissionX.Application.Commands
 
         public async Task<decimal> Handle(CreateCommisionByInvoiceCommand request, CancellationToken cancellationToken)
         {
-            var rules = await _dataContext.CommissionRules
-                .Include(x => x.SalesPersonCommissionRules)
-                .Include(x => x.ProductCommissionRules)
+            var commissionRules = await _dataContext.CommissionRules
+                .Include(cr => cr.SalesPersonCommissionRules)
+                .Where(cr => cr.SalesPersonCommissionRules.Any(spcr => spcr.SalesPersonId == request.SalesPersonId) || !cr.SalesPersonCommissionRules.Any())
                 .ToListAsync();
 
             // flat commission rules
-            var flatRules = rules.Where(c => c.CommissionRuleType == CommissionRuleType.Flat).ToList();
+            var flatRules = commissionRules.Where(c => c.CommissionRuleType == CommissionRuleType.Flat).ToList();
             ICommissionRule flatCommission = new FlatCommissionStrategy(flatRules);
 
             // percentage commission rules
-            var percentageRules = rules.Where(c => c.CommissionRuleType == CommissionRuleType.Percentage).ToList();
+            var percentageRules = commissionRules.Where(c => c.CommissionRuleType == CommissionRuleType.Percentage).ToList();
             ICommissionRule percentageCommission = new PercentageCommissionStrategy(percentageRules);
 
             // tiered commission rules
 
-            var tireCommissionRules = (from rule in rules
+            var tireCommissionRules = (from rule in commissionRules
                                        join item in _dataContext.TireCommissionRuleItems on rule.Id equals item.CommissionRuleId
                                        group item by rule into grouped
                                        select new TireCommissionRule
                                        {
                                            Id = grouped.Key.Id,
                                            Name = grouped.Key.Name,
+                                           ProductId = grouped.Key.ProductId,
                                            RuleContextType = grouped.Key.RuleContextType,
-                                           ProductCommissionRules = grouped.Key.ProductCommissionRules,
                                            SalesPersonCommissionRules = grouped.Key.SalesPersonCommissionRules,
                                            Tires = grouped.ToList()
                                        }).ToList();
@@ -65,7 +65,7 @@ namespace CommissionX.Application.Commands
             _commissionAggregator.AddStrategry(tierdCommission);
 
             // cap commision rule for total commission
-            var capRule = rules.Where(c => c.CommissionRuleType == CommissionRuleType.Cap).FirstOrDefault() ?? new CommissionRule { };
+            var capRule = commissionRules.Where(c => c.CommissionRuleType == CommissionRuleType.Cap).FirstOrDefault() ?? new CommissionRule { };
             ICommissionRule capCommission = new CapCommissionStrategy(_commissionAggregator, capRule);
 
             var products = _dataContext.Products.Where(p => request.InvoiceProducts.Select(c => c.ProductId).Contains(p.Id)).ToList();

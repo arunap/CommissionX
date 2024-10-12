@@ -27,10 +27,12 @@ namespace CommissionX.Infrastructure.EntityConfigurations
 
             builder.Property(cr => cr.CommissionRuleType).IsRequired();
 
-            builder.HasMany(cr => cr.ProductCommissionRules)
-                .WithOne(cr => cr.CommissionRule)
-                .HasForeignKey(cr => cr.CommissionRuleId)
-                .OnDelete(DeleteBehavior.NoAction);
+            builder.Property(mi => mi.ProductId).IsRequired(false);
+            
+            // builder.HasMany(cr => cr.ProductCommissionRules)
+            //     .WithOne(cr => cr.CommissionRule)
+            //     .HasForeignKey(cr => cr.CommissionRuleId)
+            //     .OnDelete(DeleteBehavior.NoAction);
 
             builder
                 .HasMany(cr => cr.SalesPersonCommissionRules)
