@@ -2,7 +2,7 @@ using CommissionX.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CommissionX.Infrastructure.ModelBuilderConfigurations
+namespace CommissionX.Infrastructure.EntityConfigurations
 {
     public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
@@ -13,9 +13,7 @@ namespace CommissionX.Infrastructure.ModelBuilderConfigurations
 
             builder.HasKey(o => o.Id);
 
-            builder.Property(mi => mi.Price)
-             .HasColumnType("decimal(18,2)") 
-             .IsRequired();
+            builder.Property(mi => mi.Price).HasColumnType("decimal(18,2)").IsRequired();
 
             builder.Property(o => o.Name).HasMaxLength(200).IsRequired(false);
 

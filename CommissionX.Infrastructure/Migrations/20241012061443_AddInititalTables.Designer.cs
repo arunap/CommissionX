@@ -3,6 +3,7 @@ using System;
 using CommissionX.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommissionX.Infrastructure.Migrations
 {
     [DbContext(typeof(CommissionDataContext))]
-    partial class CommissionDataContextModelSnapshot : ModelSnapshot
+    [Migration("20241012061443_AddInititalTables")]
+    partial class AddInititalTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

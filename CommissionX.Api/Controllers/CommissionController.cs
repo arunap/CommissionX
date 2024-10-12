@@ -12,7 +12,7 @@ namespace CommissionX.Api.Controllers
 
         public CommissionController(IMediator mediator) => _mediator = mediator;
 
-        [HttpPost]
+        [HttpPost("Calculate")]
         public async Task<IActionResult> CreateCommission([FromBody] CreateCommisionByInvoiceCommand command)
         {
             var results = await _mediator.Send(command);

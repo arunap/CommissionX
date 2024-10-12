@@ -16,7 +16,7 @@
     <None Update="Data\MockData\Products.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-     <None Update="Data\MockData\TireCommissionRules.json">
+     <None Update="Data\MockData\TireCommissionRuleItems.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -1,3 +1,4 @@
+using CommissionX.Core.Entities;
 using CommissionX.Core.Entities.Rules;
 using CommissionX.Core.Enums;
 using CommissionX.Core.Interfaces;
@@ -12,7 +13,8 @@ namespace CommissionX.Application.Commands
         public RuleContextType RuleContextType { get; set; }
         public RateCalculationType RateCalculationType { get; set; }
         public CommissionRuleType CommissionRuleType { get; set; }
-        public Guid? ProductId { get; set; }
+        public List<Guid?> ProductIds { get; set; }
+        public List<Guid?> PersonIds { get; set; }
     }
 
     public class CreateCommissionRuleCommandHandler : IRequestHandler<CreateCommissionRuleCommand, Guid>
@@ -26,15 +28,25 @@ namespace CommissionX.Application.Commands
 
         public async Task<Guid> Handle(CreateCommissionRuleCommand request, CancellationToken cancellationToken)
         {
+            var commisionRuleId = Guid.NewGuid();
             var commissionRule = new CommissionRule
             {
-                Id = Guid.NewGuid(),
+                Id = commisionRuleId,
                 Name = request.Name,
                 Value = request.Value,
                 RuleContextType = request.RuleContextType,
                 RateCalculationType = request.RateCalculationType,
                 CommissionRuleType = request.CommissionRuleType,
-                ProductId = request.ProductId
+                ProductCommissionRules = request.ProductIds.Select(x => new ProductCommissionRule
+                {
+                    ProductId = x.Value,
+                    CommissionRuleId = commisionRuleId
+                }).ToList(),
+                SalesPersonCommissionRules = request.ProductIds.Select(x => new SalesPersonCommissionRule
+                {
+                    SalesPersonId = x.Value,
+                    CommissionRuleId = commisionRuleId
+                }).ToList()
             };
 
             _context.CommissionRules.Add(commissionRule);

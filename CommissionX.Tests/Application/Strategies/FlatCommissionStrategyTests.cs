@@ -46,7 +46,7 @@ namespace CommissionX.Tests.Application.Strategies
                 }
             };
 
-            var productId = commissionRules[0].ProductId.Value;
+            Guid productId = commissionRules[0].ProductId.Value;
             var invoice = new Invoice
             {
                 InvoiceProducts = new List<InvoiceProduct>

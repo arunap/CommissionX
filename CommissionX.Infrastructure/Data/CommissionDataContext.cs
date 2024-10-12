@@ -8,11 +8,15 @@ namespace CommissionX.Infrastructure.Data
 {
     public class CommissionDataContext : DbContext, ICommissionDataContext
     {
-        public DbSet<Product> Products { get; set; }
-        public DbSet<CommissionRule> CommissionRules { get; set; }
-        public DbSet<TireCommissionRuleItem> TireCommisionRuleItems { get; set; }
-
         public new DbSet<T> Set<T>() where T : class => base.Set<T>();
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<SalesPerson> SalesPersons { get; set; }
+        public DbSet<CommissionRule> CommissionRules { get; set; }
+        public DbSet<InvoiceProduct> InvoiceProducts { get; set; }
+        public DbSet<TireCommissionRuleItem> TireCommissionRuleItems { get; set; }
+        public DbSet<ProductCommissionRule> ProductCommissionRules { get; set; }
+        public DbSet<SalesPersonCommissionRule> SalesPersonCommissionRules { get; set; }
 
         public CommissionDataContext(DbContextOptions<CommissionDataContext> options) : base(options)
         {

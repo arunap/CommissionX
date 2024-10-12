@@ -10,9 +10,10 @@ namespace CommissionX.Core.Entities.Rules
         public RuleContextType RuleContextType { get; set; } = RuleContextType.None; // Invoice, Product, ProductMultiples
         public RateCalculationType RateCalculationType { get; set; } = RateCalculationType.None; // Fixed, Percentage
         public CommissionRuleType CommissionRuleType { get; set; } = CommissionRuleType.None; // Flat, Percentage, Tier, Cap
-        public Guid? ProductId { get; set; }
 
         // navigation prop
+        public ICollection<ProductCommissionRule> ProductCommissionRules { get; set; }
         public ICollection<TireCommissionRuleItem> TireCommissionRuleItems { get; set; }
+        public ICollection<SalesPersonCommissionRule> SalesPersonCommissionRules { get; set; }
     }
 }

@@ -51,7 +51,7 @@
     "totalAmount": 1050
 }
 // To apply Tired values for multiple of a product (Flat + Tired)
-// Headphone 180 -> 100 + (540 * 5%) + 23 * 3 = 100 + 27 + 69 = 196
+// Headphone 180 -> 100 + (540 * 5%) + 23 * 3 = 100 + 27 + 69 + 30 = 226
 {
     "invoiceId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
     "salesPersonId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",

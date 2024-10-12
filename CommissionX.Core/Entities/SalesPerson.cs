@@ -1,12 +1,12 @@
+using CommissionX.Core.Entities.Common;
 using CommissionX.Core.Entities.Rules;
 
 namespace CommissionX.Core.Entities
 {
-    public class SalesPerson
+    public class SalesPerson : BaseEntity
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public ICollection<Invoice> Invoices { get; set; }
-        public ICollection<CommissionRule> CommissionRules { get; set; }
+        public ICollection<SalesPersonCommissionRule> SalesPersonCommissionRules { get; set; }
     }
 }

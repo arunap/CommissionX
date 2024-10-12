@@ -33,10 +33,10 @@ namespace CommissionX.Infrastructure.Data
                 await _context.SaveChangesAsync();
             }
 
-            if (!await _context.TireCommisionRuleItems.AnyAsync())
+            if (!await _context.TireCommissionRuleItems.AnyAsync())
             {
-                var commisions = SeedFromJson<TireCommissionRule>("Data/MockData/TireCommissionRules.json");
-                _context.CommissionRules.AddRange(commisions);
+                var commisions = SeedFromJson<TireCommissionRuleItem>("Data/MockData/TireCommissionRuleItems.json");
+                _context.TireCommissionRuleItems.AddRange(commisions);
                 await _context.SaveChangesAsync();
             }
         }

@@ -4,3 +4,14 @@
 
 == docker compose ==
     - docker compose -f "docker-compose.yml" up -d --build 
+
+
+== reset tables ==
+    DROP TABLE `TireCommissionRuleItems`;
+    DROP TABLE `SalesPersonCommissionRules`;
+    DROP TABLE `InvoiceProducts`;
+    DROP TABLE `Invoices`;
+    DROP TABLE `SalesPersons`;
+    DROP TABLE `CommissionRules`;
+    DROP TABLE `Products`;
+    DROP TABLE __EFMigrationsHistory;

@@ -1,6 +1,8 @@
+using CommissionX.Core.Entities.Common;
+
 namespace CommissionX.Core.Entities
 {
-    public class InvoiceProduct
+    public class InvoiceProduct: BaseEntity
     {
         public Guid InvoiceId { get; set; }
         public Invoice Invoice { get; set; }

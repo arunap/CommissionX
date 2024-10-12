@@ -29,7 +29,10 @@ namespace CommissionX.Application.Commands
 
         public async Task<decimal> Handle(CreateCommisionByInvoiceCommand request, CancellationToken cancellationToken)
         {
-            var rules = await _dataContext.CommissionRules.ToListAsync();
+            var rules = await _dataContext.CommissionRules
+                .Include(x => x.SalesPersonCommissionRules)
+                .Include(x => x.ProductCommissionRules)
+                .ToListAsync();
 
             // flat commission rules
             var flatRules = rules.Where(c => c.CommissionRuleType == CommissionRuleType.Flat).ToList();
@@ -42,14 +45,15 @@ namespace CommissionX.Application.Commands
             // tiered commission rules
 
             var tireCommissionRules = (from rule in rules
-                                       join item in _dataContext.TireCommisionRuleItems on rule.Id equals item.CommissionRuleId
+                                       join item in _dataContext.TireCommissionRuleItems on rule.Id equals item.CommissionRuleId
                                        group item by rule into grouped
                                        select new TireCommissionRule
                                        {
                                            Id = grouped.Key.Id,
                                            Name = grouped.Key.Name,
                                            RuleContextType = grouped.Key.RuleContextType,
-                                           ProductId = grouped.Key.ProductId,
+                                           ProductCommissionRules = grouped.Key.ProductCommissionRules,
+                                           SalesPersonCommissionRules = grouped.Key.SalesPersonCommissionRules,
                                            Tires = grouped.ToList()
                                        }).ToList();
 

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CommissionX.Infrastructure.ModelBuilderConfigurations
+namespace CommissionX.Infrastructure.EntityConfigurations
 {
     public class TireCommissionRuleItem : IEntityTypeConfiguration<Core.Entities.Rules.TireCommissionRuleItem>
     {
