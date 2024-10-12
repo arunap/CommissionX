@@ -11,13 +11,13 @@ namespace CommissionX.Application.Strategies
 
         public void AddStrategry(ICommissionRule commissionRule) => _commissionRules.Add(commissionRule);
 
-        public decimal CalculateTotalCommission(Invoice invoice, SalesPerson salesPerson)
+        public decimal CalculateTotalCommission(Invoice invoice)
         {
             decimal totalCommission = 0;
 
             foreach (var rule in _commissionRules)
             {
-                totalCommission += rule.CalculateCommission(invoice, salesPerson);
+                totalCommission += rule.CalculateCommission(invoice);
             }
 
             return totalCommission;

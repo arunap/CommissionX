@@ -46,7 +46,7 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new TieredCommissionStrategy(tieredRules);
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             Assert.Equal(0m, result); // No matching product, so commission should be 0
         }
@@ -93,7 +93,7 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new TieredCommissionStrategy(tieredRules);
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             Assert.Equal(100m, result); // Fixed commission of 100
         }
@@ -140,7 +140,7 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new TieredCommissionStrategy(tieredRules);
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             Assert.Equal(100m, result); // 10% of 1000
         }
@@ -185,7 +185,7 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new TieredCommissionStrategy(tieredRules);
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             Assert.Equal(20m, result); // Fixed commission of 20
         }
@@ -230,7 +230,7 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new TieredCommissionStrategy(tieredRules);
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             Assert.Equal(30m, result); // 3 products x 10 = 30
         }
@@ -275,7 +275,7 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new TieredCommissionStrategy(tieredRules);
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             Assert.Equal(60m, result); // 3 products x 100 (price) x 20% = 60
         }

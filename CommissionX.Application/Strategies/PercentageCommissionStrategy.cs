@@ -11,7 +11,7 @@ namespace CommissionX.Application.Strategies
 
         public PercentageCommissionStrategy(List<CommissionRule> commissionRules) => _commissionRules = commissionRules;
 
-        public decimal CalculateCommission(Invoice invoice, SalesPerson salesPerson)
+        public decimal CalculateCommission(Invoice invoice)
         {
             decimal totalCommission = 0;
 

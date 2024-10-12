@@ -4,6 +4,6 @@ namespace CommissionX.Core.Interfaces
 {
     public interface ICommissionRule
     {
-        decimal CalculateCommission(Invoice invoice, SalesPerson salesPerson);
+        decimal CalculateCommission(Invoice invoice);
     }
 }

@@ -13,7 +13,7 @@ namespace CommissionX.Application.Strategies
             _rules = rules;
         }
 
-        public decimal CalculateCommission(Invoice invoice, SalesPerson salesPerson)
+        public decimal CalculateCommission(Invoice invoice)
         {
             decimal commission = 0;
 

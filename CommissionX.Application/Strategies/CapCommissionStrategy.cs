@@ -16,9 +16,9 @@ namespace CommissionX.Application.Strategies
             _aggregator = aggregator;
         }
 
-        public decimal CalculateCommission(Invoice invoice, SalesPerson salesPerson)
+        public decimal CalculateCommission(Invoice invoice)
         {
-            decimal totalCommission = _aggregator.CalculateTotalCommission(invoice, salesPerson);
+            decimal totalCommission = _aggregator.CalculateTotalCommission(invoice);
 
             return ApplyCap(_capRules, totalCommission, invoice.TotalAmount);
         }

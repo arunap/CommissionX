@@ -25,7 +25,7 @@ namespace CommissionX.Tests.Application.Strategies
             var invoice = new Invoice { TotalAmount = 1000m };
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             Assert.Equal(200m, result);
         }
@@ -61,7 +61,7 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new FlatCommissionStrategy(commissionRules);
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             Assert.Equal(50m, result);
         }
@@ -97,7 +97,7 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new FlatCommissionStrategy(commissionRules);
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             Assert.Equal(90m, result); // Flat commission for 3 products should be 3 * 30 = 90
         }
@@ -132,7 +132,7 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new FlatCommissionStrategy(commissionRules);
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             Assert.Equal(0m, result); // No matching product, so commission should be 0
         }
@@ -172,7 +172,7 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new FlatCommissionStrategy(new List<CommissionRule> { invoiceCommissionRule, productCommissionRule });
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             Assert.Equal(150m, result);
         }

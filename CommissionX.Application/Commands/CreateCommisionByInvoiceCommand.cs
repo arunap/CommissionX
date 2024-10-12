@@ -82,7 +82,7 @@ namespace CommissionX.Application.Commands
 
                 }).ToList(),
             };
-            decimal totalCommission = capCommission.CalculateCommission(invoice, new Core.Entities.SalesPerson { });
+            decimal totalCommission = capCommission.CalculateCommission(invoice);
 
             return totalCommission;
         }

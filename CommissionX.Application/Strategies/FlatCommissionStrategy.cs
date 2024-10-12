@@ -12,7 +12,7 @@ namespace CommissionX.Application.Strategies
 
         public FlatCommissionStrategy(List<CommissionRule> commissionRules) => _commissionRules = commissionRules;
 
-        public decimal CalculateCommission(Invoice invoice, SalesPerson salesPerson)
+        public decimal CalculateCommission(Invoice invoice)
         {
             decimal totalCommission = 0;
 

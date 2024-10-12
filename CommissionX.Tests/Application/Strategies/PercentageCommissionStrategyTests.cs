@@ -28,7 +28,7 @@ namespace CommissionX.Tests.Application.Strategies
             var invoice = new Invoice { TotalAmount = 100m };
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             Assert.Equal(10m, result); // 10% of 100 should be 10
         }
@@ -62,7 +62,7 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new PercentageCommissionStrategy(commissionRules);
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             Assert.Equal(25m, result); // 5% of 500 should be 25
         }
@@ -97,7 +97,7 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new PercentageCommissionStrategy(commissionRules);
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             Assert.Equal(0m, result); // No matching product, so commission should be 0
         }
@@ -138,7 +138,7 @@ namespace CommissionX.Tests.Application.Strategies
             var strategy = new PercentageCommissionStrategy(new List<CommissionRule> { invoiceCommissionRule, productCommissionRule });
             var salesPerson = new SalesPerson();
 
-            var result = strategy.CalculateCommission(invoice, salesPerson);
+            var result = strategy.CalculateCommission(invoice);
 
             var expectedCommission = (1000m * 10m / 100) + (500m * 5m / 100);
 

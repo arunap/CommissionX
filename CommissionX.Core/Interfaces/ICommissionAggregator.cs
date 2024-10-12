@@ -5,6 +5,6 @@ namespace CommissionX.Core.Interfaces
     public interface ICommissionAggregator
     {
         public void AddStrategry(ICommissionRule commissionRule);
-        public decimal CalculateTotalCommission(Invoice invoice, SalesPerson salesPerson);
+        public decimal CalculateTotalCommission(Invoice invoice);
     }
 }

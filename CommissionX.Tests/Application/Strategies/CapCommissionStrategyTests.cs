@@ -26,9 +26,9 @@ namespace CommissionX.Tests.Application.Strategies
         {
             var invoice = new Invoice { TotalAmount = 1000 };
             var salesPerson = new SalesPerson();
-            _aggregatorMock.Setup(a => a.CalculateTotalCommission(invoice, salesPerson)).Returns(500);
+            _aggregatorMock.Setup(a => a.CalculateTotalCommission(invoice)).Returns(500);
 
-            var result = _capCommissionStrategy.CalculateCommission(invoice, salesPerson);
+            var result = _capCommissionStrategy.CalculateCommission(invoice);
             Assert.Equal(500, result);
         }
 
@@ -39,9 +39,9 @@ namespace CommissionX.Tests.Application.Strategies
             var salesPerson = new SalesPerson();
             _capRules.Add(new CommissionRule { Value = 400, RateCalculationType = RateCalculationType.Fixed });
 
-            _aggregatorMock.Setup(a => a.CalculateTotalCommission(invoice, salesPerson)).Returns(500);
+            _aggregatorMock.Setup(a => a.CalculateTotalCommission(invoice)).Returns(500);
 
-            var result = _capCommissionStrategy.CalculateCommission(invoice, salesPerson);
+            var result = _capCommissionStrategy.CalculateCommission(invoice);
             Assert.Equal(400, result);
         }
 
@@ -53,9 +53,9 @@ namespace CommissionX.Tests.Application.Strategies
             _capRules.Add(new CommissionRule { Value = 600, RateCalculationType = RateCalculationType.Fixed });
             _capRules.Add(new CommissionRule { Value = 300, RateCalculationType = RateCalculationType.Fixed });
 
-            _aggregatorMock.Setup(a => a.CalculateTotalCommission(invoice, salesPerson)).Returns(500);
+            _aggregatorMock.Setup(a => a.CalculateTotalCommission(invoice)).Returns(500);
 
-            var result = _capCommissionStrategy.CalculateCommission(invoice, salesPerson);
+            var result = _capCommissionStrategy.CalculateCommission(invoice);
             Assert.Equal(300, result);
         }
 
@@ -66,9 +66,9 @@ namespace CommissionX.Tests.Application.Strategies
             var salesPerson = new SalesPerson();
             _capRules.Add(new CommissionRule { Value = 700, RateCalculationType = RateCalculationType.Fixed });
 
-            _aggregatorMock.Setup(a => a.CalculateTotalCommission(invoice, salesPerson)).Returns(500);
+            _aggregatorMock.Setup(a => a.CalculateTotalCommission(invoice)).Returns(500);
 
-            var result = _capCommissionStrategy.CalculateCommission(invoice, salesPerson);
+            var result = _capCommissionStrategy.CalculateCommission(invoice);
             Assert.Equal(500, result);
         }
 
@@ -84,9 +84,9 @@ namespace CommissionX.Tests.Application.Strategies
                 SalesPersonCommissionRules = new List<SalesPersonCommissionRule>()
             });
 
-            _aggregatorMock.Setup(a => a.CalculateTotalCommission(invoice, salesPerson)).Returns(700);
+            _aggregatorMock.Setup(a => a.CalculateTotalCommission(invoice)).Returns(700);
 
-            var result = _capCommissionStrategy.CalculateCommission(invoice, salesPerson);
+            var result = _capCommissionStrategy.CalculateCommission(invoice);
             Assert.Equal(500, result);
         }
 
@@ -98,9 +98,9 @@ namespace CommissionX.Tests.Application.Strategies
             _capRules.Add(new CommissionRule { Value = 400, RateCalculationType = RateCalculationType.Fixed });
             _capRules.Add(new CommissionRule { Value = 600, RateCalculationType = RateCalculationType.Fixed });
 
-            _aggregatorMock.Setup(a => a.CalculateTotalCommission(invoice, salesPerson)).Returns(500);
+            _aggregatorMock.Setup(a => a.CalculateTotalCommission(invoice)).Returns(500);
 
-            var result = _capCommissionStrategy.CalculateCommission(invoice, salesPerson);
+            var result = _capCommissionStrategy.CalculateCommission(invoice);
             Assert.Equal(400, result);
         }
 
@@ -112,9 +112,9 @@ namespace CommissionX.Tests.Application.Strategies
             _capRules.Add(new CommissionRule { Value = 50, RateCalculationType = RateCalculationType.Percentage }); // 50%
             _capRules.Add(new CommissionRule { Value = 600, RateCalculationType = RateCalculationType.Fixed });
 
-            _aggregatorMock.Setup(a => a.CalculateTotalCommission(invoice, salesPerson)).Returns(700);
+            _aggregatorMock.Setup(a => a.CalculateTotalCommission(invoice)).Returns(700);
 
-            var result = _capCommissionStrategy.CalculateCommission(invoice, salesPerson);
+            var result = _capCommissionStrategy.CalculateCommission(invoice);
             Assert.Equal(500, result);
         }
     }

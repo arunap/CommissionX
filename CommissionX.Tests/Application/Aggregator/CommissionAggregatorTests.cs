@@ -16,7 +16,7 @@ namespace CommissionX.Tests.Application.Aggregator
             var salesPerson = new SalesPerson();
 
             // Act
-            var result = aggregator.CalculateTotalCommission(invoice, salesPerson);
+            var result = aggregator.CalculateTotalCommission(invoice);
 
             // Assert
             Assert.Equal(0, result); // Total commission should be zero
@@ -27,7 +27,7 @@ namespace CommissionX.Tests.Application.Aggregator
         {
 
             var mockCommissionRule = new Mock<ICommissionRule>();
-            mockCommissionRule.Setup(r => r.CalculateCommission(It.IsAny<Invoice>(), It.IsAny<SalesPerson>())).Returns(150); // Mocked commission value
+            mockCommissionRule.Setup(r => r.CalculateCommission(It.IsAny<Invoice>())).Returns(150); // Mocked commission value
 
             var aggregator = new CommissionAggregator();
             aggregator.AddStrategry(mockCommissionRule.Object);
@@ -36,7 +36,7 @@ namespace CommissionX.Tests.Application.Aggregator
             var salesPerson = new SalesPerson();
 
             // Act
-            var result = aggregator.CalculateTotalCommission(invoice, salesPerson);
+            var result = aggregator.CalculateTotalCommission(invoice);
 
             // Assert
             Assert.Equal(150, result); // Should return the mocked commission value
@@ -47,10 +47,10 @@ namespace CommissionX.Tests.Application.Aggregator
         {
 
             var mockCommissionRule1 = new Mock<ICommissionRule>();
-            mockCommissionRule1.Setup(r => r.CalculateCommission(It.IsAny<Invoice>(), It.IsAny<SalesPerson>())).Returns(150);
+            mockCommissionRule1.Setup(r => r.CalculateCommission(It.IsAny<Invoice>())).Returns(150);
 
             var mockCommissionRule2 = new Mock<ICommissionRule>();
-            mockCommissionRule2.Setup(r => r.CalculateCommission(It.IsAny<Invoice>(), It.IsAny<SalesPerson>())).Returns(100);
+            mockCommissionRule2.Setup(r => r.CalculateCommission(It.IsAny<Invoice>())).Returns(100);
 
             var aggregator = new CommissionAggregator();
             aggregator.AddStrategry(mockCommissionRule1.Object);
@@ -60,7 +60,7 @@ namespace CommissionX.Tests.Application.Aggregator
             var salesPerson = new SalesPerson();
 
             // Act
-            var result = aggregator.CalculateTotalCommission(invoice, salesPerson);
+            var result = aggregator.CalculateTotalCommission(invoice);
 
             // Assert
             Assert.Equal(250, result); // Should return the sum of both mocked commission values
