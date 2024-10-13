@@ -10,6 +10,7 @@ The solution is divided into multiple projects to support a clean architecture p
 2. **CommissionX.Application** - Contains application logic, CQRS pattern implementations (Commands, Queries, Handlers), and DTOs.
 3. **CommissionX.Core** - Core domain entities such as `Invoice`, `SalesPerson`, `CommissionRule`, etc.
 4. **CommissionX.Infrastructure** - Infrastructure layer for database contexts and persistence configuration (MySQL).
+5. **CommissionX.Tests** - xUnit project for Unit Test Cases.
 
 ## Technologies Used
 
@@ -20,8 +21,8 @@ The solution is divided into multiple projects to support a clean architecture p
 - **Docker Compose**
 
 ## Assumptions
-- In a case where a default cap rule exists and an individual cap rule(s) exists for a given sales person, priority will be given to the Sales Person's the minimum cap.
-- When creating a Commission Rule, the system allows assigning a single Product to the commission rule.
+- In a case where a default cap rule exists and an individual cap rule(s) exists for a given sales person, priority will be given to the Sales Person's minimum cap.
+- When creating a Commission Rule, the system allows assigning a single Product to the commission rule as for now.
 - No priority/consideration were given when applying defaults,Flat, Percentage, Tire  
 
 ## Getting Started
