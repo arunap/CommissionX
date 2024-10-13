@@ -54,6 +54,7 @@ var app = builder.Build();
 app.UseExceptionMiddleware();
 
 // Configure the HTTP request pipeline.
+
 app.UseHttpsRedirection();
 
 if (app.Environment.IsDevelopment())
@@ -62,7 +63,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Commission API v1");
-        c.RoutePrefix = "swagger";
+        c.RoutePrefix = string.Empty;
     });
 }
 

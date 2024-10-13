@@ -16,7 +16,7 @@ services:
     networks:
       - commissionx_network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "--silent"]
+      test: mysqladmin ping -h 127.0.0.1 -p 8300 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD | grep -q 'mysqld is alive'
       interval: 10s
       retries: 5
       start_period: 30s

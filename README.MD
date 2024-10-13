@@ -77,7 +77,7 @@ The solution is divided into multiple projects to support a clean architecture p
 
 ### Accessing the Application
 
-- **Backend (API)**: The API will be available at `http://localhost:8200/swagger`.
+- **Backend (API)**: The API will be available at `http://localhost:8200/index.html`.
 - **MySQL Database**: Will be available at port `8300` server `127.0.0.1`.
 
 ![Swagger Api Document](./assets/swagger_api_docs.jpg)
